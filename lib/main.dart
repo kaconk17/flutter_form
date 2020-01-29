@@ -30,11 +30,7 @@ class _MyAppState extends State<MyApp> {
                 currentAccountPicture: new CircleAvatar(
                   backgroundColor: Colors.green,
                 ),
-                decoration: new BoxDecoration(color: Colors.red
-                    //image: new DecorationImage(
-                    //image: NetworkImage(
-                    // "https://www.jcount.com/wp-content/uploads/2015/12/d.png"))
-                    )),
+                decoration: new BoxDecoration(color: Colors.red)),
             new GestureDetector(
               onTap: () {
                 Navigator.of(context).pop();
