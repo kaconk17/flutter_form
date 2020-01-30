@@ -15,6 +15,10 @@ class _FormRegisterState extends State<FormRegister> {
     });
   }
 
+  void _get_user() {
+    _level = _level;
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: new AppBar(
@@ -47,19 +51,60 @@ class _FormRegisterState extends State<FormRegister> {
                   new Padding(
                     padding: EdgeInsets.only(top: 20.0),
                   ),
-                  new DropdownButton(
-                    underline: Container(
-                      height: 2,
-                      color: Colors.deepPurpleAccent,
-                    ),
-                    onChanged: (String value) {
-                      pilih_level(value);
-                    },
-                    value: _level,
-                    items: lvl_user.map((String value) {
-                      return new DropdownMenuItem(
-                          value: value, child: new Text(value));
-                    }).toList(),
+                  new Row(
+                    children: <Widget>[
+                      new Text(
+                        "Level User     ",
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      new DropdownButton(
+                        underline: Container(
+                          height: 2,
+                          color: Colors.deepPurpleAccent,
+                        ),
+                        onChanged: (String value) {
+                          pilih_level(value);
+                        },
+                        value: _level,
+                        items: lvl_user.map((String value) {
+                          return new DropdownMenuItem(
+                              value: value, child: new Text(value));
+                        }).toList(),
+                      )
+                    ],
+                  ),
+                  new Padding(
+                    padding: EdgeInsets.only(top: 20.0),
+                  ),
+                  new Row(
+                    children: <Widget>[
+                      new Padding(
+                        padding: EdgeInsets.only(left: 80),
+                      ),
+                      new RaisedButton(
+                        child: new Text(
+                          "Simpan",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.blue,
+                        onPressed: () {
+                          _get_user();
+                        },
+                      ),
+                      new Padding(
+                        padding: EdgeInsets.only(left: 50),
+                      ),
+                      new RaisedButton(
+                        child: new Text(
+                          "Cancel",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.blue,
+                        onPressed: () {
+                          _get_user();
+                        },
+                      ),
+                    ],
                   )
                 ],
               ),
