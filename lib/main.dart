@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:form/view/form.dart';
+
+import 'package:form/view/listUser.dart';
 
 void main() {
   runApp(new MaterialApp(
@@ -35,7 +36,7 @@ class _MyAppState extends State<MyApp> {
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(new MaterialPageRoute(
-                    builder: (BuildContext context) => new FormRegister()));
+                    builder: (BuildContext context) => new UserList()));
               },
               child: new ListTile(
                 title: new Text("Register"),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form/model/UserModel.dart';
-import 'package:intl/intl.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+//import 'package:intl/intl.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class FormRegister extends StatefulWidget {
   _FormRegisterState createState() => _FormRegisterState();
@@ -9,26 +9,15 @@ class FormRegister extends StatefulWidget {
 
 class _FormRegisterState extends State<FormRegister> {
   User _user;
-  final dateFormat = DateFormat("yyyy-MM-dd");
+  //final dateFormat = DateFormat("yyyy-MM-dd");
   @override
-  List<String> lvl_user = ["User", "Manager", "Administrator"];
-  String _level = "User";
   String _kelamin = "";
+  String _date = "Not Set";
 
   void _pilihjk(String value) {
     setState(() {
       _kelamin = value;
     });
-  }
-
-  void pilih_level(String value) {
-    setState(() {
-      _level = value;
-    });
-  }
-
-  void _get_user() {
-    _level = _level;
   }
 
   Widget build(BuildContext context) {
@@ -93,44 +82,73 @@ class _FormRegisterState extends State<FormRegister> {
                     activeColor: Colors.blue,
                   ),
                   new Padding(
-                    padding: EdgeInsets.only(top: 20.0),
+                    padding: EdgeInsets.only(top: 10.0),
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('Basic date field (${dateFormat.pattern})'),
-                    ],
-                  ),
-                  DateTimeField(
-                    format: dateFormat,
-                    onShowPicker: (context, currentValue) async {
-                      return showDatePicker(
-                          context: context,
-                          firstDate: DateTime(1900),
-                          initialDate: currentValue ?? DateTime.now(),
-                          lastDate: DateTime(2100));
-                    },
-                  ),
-                  new Row(
-                    children: <Widget>[
-                      new Text(
-                        "Level User :    ",
+                      Text(
+                        'Tanggal Lahir',
                         style: TextStyle(fontSize: 15),
                       ),
-                      new DropdownButton(
-                        underline: Container(
-                          height: 2,
-                          color: Colors.deepPurpleAccent,
-                        ),
-                        onChanged: (String value) {
-                          pilih_level(value);
-                        },
-                        value: _level,
-                        items: lvl_user.map((String value) {
-                          return new DropdownMenuItem(
-                              value: value, child: new Text(value));
-                        }).toList(),
-                      ),
                     ],
+                  ),
+                  RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0)),
+                    elevation: 2.0,
+                    onPressed: () {
+                      DatePicker.showDatePicker(context,
+                          theme: DatePickerTheme(
+                            containerHeight: 210.0,
+                          ),
+                          showTitleActions: true,
+                          minTime: DateTime(1960, 1, 1),
+                          maxTime: DateTime.now(), onConfirm: (date) {
+                        print('confirm $date');
+                        _date = '${date.year} - ${date.month} - ${date.day}';
+                        setState(() {});
+                      }, currentTime: DateTime.now(), locale: LocaleType.en);
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 60.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Container(
+                                child: Row(
+                                  children: <Widget>[
+                                    Icon(Icons.date_range,
+                                        size: 18.0, color: Colors.black),
+                                    Text(
+                                      " $_date",
+                                      style: TextStyle(
+                                          //color: Colors.black,
+                                          //fontWeight: FontWeight.bold,
+                                          fontSize: 15.0),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                          Text(
+                            "  Change",
+                            style: TextStyle(
+                                color: Colors.blue,
+                                //fontWeight: FontWeight.bold,
+                                fontSize: 15.0),
+                          ),
+                        ],
+                      ),
+                    ),
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    height: 20.0,
                   ),
                   new Padding(
                     padding: EdgeInsets.only(top: 20.0),
@@ -146,9 +164,7 @@ class _FormRegisterState extends State<FormRegister> {
                           style: TextStyle(color: Colors.white),
                         ),
                         color: Colors.blue,
-                        onPressed: () {
-                          _get_user();
-                        },
+                        onPressed: () {},
                       ),
                       new Padding(
                         padding: EdgeInsets.only(left: 50),
