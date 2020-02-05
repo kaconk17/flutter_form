@@ -40,7 +40,7 @@ class _UserListState extends State<UserList> {
 class daftarUser extends StatelessWidget {
   final List list;
   daftarUser({this.list});
-
+  String link = "";
   @override
   Widget build(BuildContext context) {
     return new ListView.builder(
@@ -50,20 +50,20 @@ class daftarUser extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           child: Card(
             child: new ListTile(
-              title: Text(list[i]['name']),
-              //leading: Icon(Icons.account_circle),
               leading: list[i]['profile_picture'] == null
-                  ? Icon(Icons.account_circle)
+                  ? CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Colors.transparent,
+                      child: Image.network(
+                          "http://10.0.3.2:8888/pasar_kredit/public/assets/img/user.png"),
+                    )
                   : CircleAvatar(
-                      radius: 50,
-                      child: ClipOval(
-                        child: Image.network(
-                            "http://10.0.3.2:8888/pasar_kredit/public/assets/img/profile/${list[i]['profile_picture']}"),
-                      ),
-                      //backgroundImage: NetworkImage(
-                      //  "http://10.0.3.2:8888/pasar_kredit/public/assets/img/profile/${list[i]['profile_picture']}"),
+                      radius: 30,
+                      backgroundColor: Colors.transparent,
+                      child: Image.network(
+                          "http://10.0.3.2:8888/pasar_kredit/public/assets/img/profile/${list[i]['profile_picture']}"),
                     ),
-
+              title: Text(list[i]['name']),
               subtitle: Text("Email : ${list[i]['email']}"),
             ),
           ),
