@@ -39,8 +39,8 @@ class _MyAppState extends State<MyApp> {
                     builder: (BuildContext context) => new UserList()));
               },
               child: new ListTile(
-                title: new Text("Register"),
-                trailing: new Icon(Icons.supervisor_account),
+                title: new Text("Users"),
+                trailing: new Icon(Icons.account_circle),
               ),
             ),
             new ListTile(

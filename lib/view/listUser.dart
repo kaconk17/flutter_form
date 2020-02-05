@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:form/view/form.dart';
 
 class UserList extends StatefulWidget {
   @override
@@ -20,6 +21,13 @@ class _UserListState extends State<UserList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(title: Text("Daftar User")),
+      floatingActionButton: new FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).push(new MaterialPageRoute(
+              builder: (BuildContext context) => new FormRegister()));
+        },
+      ),
       body: new FutureBuilder<List>(
         future: getUser(),
         builder: (context, snapshot) {
